@@ -1,23 +1,30 @@
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { products } from "../../utils/prodcuts";
 import { decreaseQuantity, increaseQuantity, removeFromCart } from "../../redux/features/Cart/cartSlice";
+import { message } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
     // Get cart items from Redux state
     const cartItems = useAppSelector((state) => state.cart.items);
-
     const dispatch = useAppDispatch();
 
     const total = cartItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0
     );
+    const navigate = useNavigate();
+    const handleCheckout = () => {
+        if (cartItems.length) {
+            message.success("Checkout Successful")
+            navigate("/")
+        }
+    }
 
     return (
         <div className="w-full">
             <h2 className="text-lg font-semibold mb-4">Your Cart</h2>
 
-            {/* Cart Table - Make it horizontally scrollable */}
             <div className="overflow-x-auto">
                 <table className="min-w-full text-left border-collapse table-auto">
                     <thead>
@@ -77,7 +84,6 @@ const Cart = () => {
                                             </div>
                                         </td>
 
-
                                         {/* Product Price */}
                                         <td className="py-2 px-3 text-[10px] sm:text-base">
                                             ${(item.price * item.quantity).toFixed(2)}
@@ -86,7 +92,7 @@ const Cart = () => {
                                         {/* Remove Button */}
                                         <td className="py-2 px-3">
                                             <button
-                                                onClick={() => dispatch(removeFromCart(item))}
+                                                onClick={() =>{ dispatch(removeFromCart(item)); message.success("Product Deleted!")}}
                                                 className="px-1 sm:px-2 text-[10px] py-1 bg-red-500 text-white rounded-md hover:bg-red-600 sm:text-base"
                                             >
                                                 Remove
@@ -117,7 +123,7 @@ const Cart = () => {
                 <button className="px-3 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 w-full sm:w-auto">
                     Continue Shopping
                 </button>
-                <button className="px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto">
+                <button className={`px-3 py-2 ${cartItems.length ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-300"} text-white rounded-md w-full sm:w-auto`} onClick={handleCheckout} disabled={!cartItems?.length}>
                     Checkout
                 </button>
             </div>

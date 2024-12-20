@@ -68,7 +68,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
         <div className="flex items-center flex-wrap gap-4">
             <button
                 onClick={handleDecrease}
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow hover:bg-gray-300 transition"
+                className="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg shadow hover:bg-gray-300 transition"
                 disabled={quantity <= 1}
             >
                 −
@@ -76,18 +76,18 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
             <span className="text-lg font-semibold">{quantity}</span>
             <button
                 onClick={handleIncrease}
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow hover:bg-gray-300"
+                className="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg shadow hover:bg-gray-300"
             >
                 +
             </button>
             <button
                 onClick={handleAddToCart}
-                className={`px-6 py-2 ${cartItem ? "bg-green-500" : "bg-blue-500"} text-white rounded-lg shadow-lg`}
+                className={`text-[10px] sm:text-base px-3 sm:px-6 py-2 ${cartItem ? "bg-green-500" : "bg-blue-500"} text-white rounded-lg shadow-lg`}
             >
                 Add to Cart
             </button>
             <div className="flex items-center space-x-4">
-                <button className="px-6 py-2 bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300">
+                <button className="px-3 sm:px-6 py-2 bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300">
                     <IoIosHeartEmpty className='w-5 h-5' />
                 </button>
             </div>

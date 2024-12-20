@@ -108,9 +108,9 @@ export default function ProductDetails() {
       </div>
 
       {/* Checkout Button */}
-      <div className="flex items-center justify-center text-center">
+      <div className="mt-10 flex items-center justify-center text-center">
         <button
-          className="px-6 py-3 bg-green-600 text-white font-bold text-lg rounded-full shadow-lg transform transition-all duration-300 ease-in-out hover:bg-green-700 hover:scale-105 active:bg-green-800 active:scale-95 focus:outline-none"
+          className="px-6 py-3 bg-green-600 text-white font-bold text-sm sm:text-lg rounded-full shadow-lg transform transition-all duration-300 ease-in-out hover:bg-green-700 hover:scale-105 active:bg-green-800 active:scale-95 focus:outline-none"
           onClick={() => handleModal(true)}
         >
           Complete Checkout

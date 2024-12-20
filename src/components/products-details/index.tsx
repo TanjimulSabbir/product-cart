@@ -9,7 +9,7 @@ export default function ProductDetails() {
     const [selectedColor, setSelectedColor] = useState<string>(product.colors[0]);
 
     return (
-        <main className="container max-w-screen-2xl mx-auto horizantalPadding">
+        <main className="container max-w-screen-2xl mx-auto horizantalPadding pb-10">
             <div className="flex flex-col md:flex-row gap-8 p-8 xl:items-center xl:justify-center">
                 <div className="w-full md:w-1/2 flex justify-center xl:items-center">
                     <ProductImages selectedColor={selectedColor} />
@@ -76,13 +76,14 @@ export default function ProductDetails() {
                     <AddToCartButton product={product}
                         selectedSize={selectedSize}
                         selectedColor={selectedColor} />
-                    <div className="flex items-center space-x-4">
-                        <button className="px-6 py-2 bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition">
-                            ❤
-                        </button>
-                    </div>
                 </div>
             </div>
+            <div className="flex items-center justify-center text-center ">
+                <button className="px-6 py-3 bg-green-600 text-white font-bold text-lg rounded-full shadow-lg transform transition-all duration-300 ease-in-out hover:bg-green-700 hover:scale-105 active:bg-green-800 active:scale-95 focus:outline-none">
+                    Complete Checkout
+                </button>
+            </div>
+
         </main>
     );
 }

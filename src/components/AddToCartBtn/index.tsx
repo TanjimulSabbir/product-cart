@@ -4,6 +4,7 @@ import { Product, Size } from '../../utils/prodcuts.tsx';
 import { useAppSelector } from '../../hooks/hooks';
 import { useState, useEffect } from 'react';
 import { message } from 'antd';
+import { IoIosHeartEmpty } from 'react-icons/io';
 
 interface AddToCartButtonProps {
     product: Product;
@@ -55,7 +56,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
     const handleDecrease = () => {
         if (quantity > 1) {
             const newQuantity = quantity - 1;
-            setQuantity(newQuantity); 
+            setQuantity(newQuantity);
         } else {
             message.info("At least 1 item must be selected");
         }
@@ -66,7 +67,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
             <button
                 onClick={handleDecrease}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow hover:bg-gray-300 transition"
-                disabled={quantity <= 1} 
+                disabled={quantity <= 1}
             >
                 −
             </button>
@@ -83,6 +84,11 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
             >
                 Add to Cart
             </button>
+            <div className="flex items-center space-x-4">
+                <button className="px-6 py-2 bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 transition">
+                    <IoIosHeartEmpty className='w-5 h-5'/>
+                </button>
+            </div>
         </div>
     );
 };

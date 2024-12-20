@@ -3,6 +3,7 @@ import { addToCart } from '../../redux/features/Cart/cartSlice';
 import { Product, Size } from '../../utils/prodcuts.tsx';
 import { useAppSelector } from '../../hooks/hooks';
 import { useState, useEffect } from 'react';
+import { message } from 'antd';
 
 interface AddToCartButtonProps {
     product: Product;
@@ -47,37 +48,18 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
                 quantity: quantity,
             })
         );
+        message.success(`${product.name} is added to cart.`)
     };
 
     const handleIncrease = () => {
         const newQuantity = quantity + 1;
         setQuantity(newQuantity);
-        dispatch(
-            addToCart({
-                id: product.id,
-                name: product.name,
-                price: selectedSize.price,
-                size: selectedSize.label,
-                color: selectedColor,
-                quantity: newQuantity,
-            })
-        );
     };
 
     const handleDecrease = () => {
         if (cartItem && cartItem?.quantity > 1) {
             const newQuantity = cartItem && cartItem?.quantity - 1;
             setQuantity(newQuantity);
-            dispatch(
-                addToCart({
-                    id: product.id,
-                    name: product.name,
-                    price: selectedSize.price,
-                    size: selectedSize.label,
-                    color: selectedColor,
-                    quantity: newQuantity,
-                })
-            );
         }
     };
 

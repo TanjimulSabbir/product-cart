@@ -14,91 +14,95 @@ const Cart = () => {
     );
 
     return (
-        <div className="w-[700px]">
+        <div className="w-full">
             <h2 className="text-lg font-semibold mb-4">Your Cart</h2>
 
-            {/* Cart Table */}
-            <table className="w-full text-left border-collapse border-spacing-6">
-                <thead>
-                    <tr>
-                        <th className="border-b pb-2">Item</th>
-                        <th className="border-b pb-2">Color</th>
-                        <th className="border-b pb-2">Size</th>
-                        <th className="border-b pb-2">Qty</th>
-                        <th className="border-b pb-2">Price</th>
-                        <th className="border-b pb-2">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {cartItems.length > 0 ? (
-                        cartItems.map((item) => {
-                            const product = products.find((p) => p.id === item.id);
-                            if (!product) return null;
-
-                            return (
-                                <tr key={item.id} className="border-b">
-                                    {/* Combined Product Image and Name */}
-                                    <td className="flex space-x-3 items-center py-2">
-                                        <img
-                                            src={product.images[item.color]}
-                                            alt={`${product.name} in ${item.color}`}
-                                            className="w-12 h-12 object-cover rounded"
-                                        />
-                                        <span>{product.name}</span>
-                                    </td>
-
-                                    {/* Product Color */}
-                                    <td
-                                        className="py-2 capitalize"
-                                    >
-                                        {item.color}
-                                    </td>
-
-                                    {/* Product Size */}
-                                    <td className="py-2">{item.size}</td>
-
-                                    {/* Product Quantity */}
-                                    <td className="py-2">{item.quantity}</td>
-
-                                    {/* Product Price */}
-                                    <td className="py-2">
-                                        ${(item.price * item.quantity).toFixed(2)}
-                                    </td>
-
-                                    {/* Remove Button */}
-                                    <td className="py-2">
-                                        <button
-                                            onClick={() => dispatch(removeFromCart(item))}
-                                            className="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
-                                        >
-                                            Remove
-                                        </button>
-                                    </td>
-                                </tr>
-                            );
-                        })
-                    ) : (
+            {/* Cart Table - Make it horizontally scrollable */}
+            <div className="overflow-x-auto">
+                <table className="min-w-full text-left border-collapse table-auto">
+                    <thead>
                         <tr>
-                            <td colSpan={6} className="text-center py-4 text-gray-500">
-                                Your cart is empty.
-                            </td>
+                            <th className="text-xs md:text-base py-2">Item</th>
+                            <th className="text-xs md:text-base py-2 px-3">Color</th>
+                            <th className="text-xs md:text-base py-2 px-3">Size</th>
+                            <th className="text-xs md:text-base py-2 px-3">Qty</th>
+                            <th className="text-xs md:text-base py-2 px-3">Price</th>
+                            <th className="text-xs md:text-base py-2 px-3">Action</th>
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {cartItems.length > 0 ? (
+                            cartItems.map((item) => {
+                                const product = products.find((p) => p.id === item.id);
+                                if (!product) return null;
+
+                                return (
+                                    <tr key={item.id} className="border-b border-gray-300">
+                                        {/* Combined Product Image and Name */}
+                                        <td className="flex space-x-3 items-center py-2 min-w-[100px]">
+                                            <img
+                                                src={product.images[item.color]}
+                                                alt={`${product.name} in ${item.color}`}
+                                                className="w-12 h-12 object-cover rounded"
+                                            />
+                                            <span className="text-[10px] sm:text-base">{product.name}</span>
+                                        </td>
+
+                                        {/* Product Color */}
+                                        <td className="py-2 pl-4 text-[10px] sm:text-base capitalize">
+                                            {item.color}
+                                        </td>
+
+                                        {/* Product Size */}
+                                        <td className="py-2 px-3 text-[10px] sm:text-base">
+                                            {item.size}
+                                        </td>
+
+                                        {/* Product Quantity */}
+                                        <td className="py-2 px-3 text-[10px] sm:text-base">
+                                            {item.quantity}
+                                        </td>
+
+                                        {/* Product Price */}
+                                        <td className="py-2 px-3 text-[10px] sm:text-base">
+                                            ${(item.price * item.quantity).toFixed(2)}
+                                        </td>
+
+                                        {/* Remove Button */}
+                                        <td className="py-2 px-3">
+                                            <button
+                                                onClick={() => dispatch(removeFromCart(item))}
+                                                className="px-1 sm:px-2 text-[10px] py-1 bg-red-500 text-white rounded-md hover:bg-red-600 sm:text-base"
+                                            >
+                                                Remove
+                                            </button>
+                                        </td>
+                                    </tr>
+                                );
+                            })
+                        ) : (
+                            <tr>
+                                <td colSpan={6} className="text-center py-4 text-gray-500 text-sm sm:text-base">
+                                    Your cart is empty.
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
 
             {/* Total */}
             <div className="flex justify-between items-center mt-4">
-                <p className="text-lg font-semibold">Total</p>
-                <p className="text-lg font-semibold">${total.toFixed(2)}</p>
+                <p className="text-lg sm:text-xl font-semibold">Total</p>
+                <p className="text-lg sm:text-xl font-semibold">${total.toFixed(2)}</p>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex justify-between mt-6">
-                <button className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300">
+            <div className="flex flex-col sm:flex-row justify-between mt-6 gap-4">
+                <button className="px-3 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 w-full sm:w-auto">
                     Continue Shopping
                 </button>
-                <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                <button className="px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto">
                     Checkout
                 </button>
             </div>

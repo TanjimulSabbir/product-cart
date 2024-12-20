@@ -63,7 +63,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
     };
 
     return (
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center flex-wrap gap-4">
             <button
                 onClick={handleDecrease}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow hover:bg-gray-300 transition"

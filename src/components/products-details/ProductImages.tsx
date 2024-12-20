@@ -1,6 +1,5 @@
 import { Image } from "antd";
-import { useState } from "react";
-import { products, Product } from "../../utils/prodcuts.tsx";
+import { Product, products } from "../../utils/prodcuts.tsx";
 
 interface ProductImagesProps {
     selectedColor: string;
@@ -8,17 +7,13 @@ interface ProductImagesProps {
 
 export default function ProductImages({ selectedColor }: ProductImagesProps) {
     const product: Product = products[0];
-    const [current, setCurrent] = useState(0);
-
     const imageList = product.images[selectedColor];
-
     return (
         <main>
             <Image.PreviewGroup
                 items={product.imageItems}
                 preview={{
                     toolbarRender: () => null,
-                    onChange: (index) => setCurrent(index),
                 }}
             >
                 <Image src={imageList} />

@@ -44,7 +44,7 @@ const Cart = () => {
                                 if (!product) return null;
 
                                 return (
-                                    <tr key={item.id} className="border-b border-gray-300">
+                                    <tr key={item.price} className="border-b border-gray-300">
                                         {/* Combined Product Image and Name */}
                                         <td className="flex space-x-3 items-center py-2 min-w-[100px]">
                                             <img

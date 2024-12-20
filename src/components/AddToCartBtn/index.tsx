@@ -19,19 +19,15 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
     const dispatch = useDispatch();
     const cartItems = useAppSelector(state => state.cart.items);
 
-    // Find the product in the cart based on size and color
     const cartItem = cartItems.find(
         item =>
             item.id === product.id &&
             item.size === selectedSize.label &&
             item.color === selectedColor
     );
-
-    // Default to 1 if the item is not found in the cart
     const [quantity, setQuantity] = useState<number>(cartItem ? cartItem.quantity : 1);
 
     useEffect(() => {
-        // If cartItem changes (e.g. quantity was updated), update local state
         if (cartItem) {
             setQuantity(cartItem.quantity);
         }
@@ -48,7 +44,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
                 quantity: quantity,
             })
         );
-        message.success(`${product.name} is added to cart.`)
+        message.success(`${product.name} is added to cart.`);
     };
 
     const handleIncrease = () => {
@@ -57,9 +53,11 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
     };
 
     const handleDecrease = () => {
-        if (cartItem && cartItem?.quantity > 1) {
-            const newQuantity = cartItem && cartItem?.quantity - 1;
-            setQuantity(newQuantity);
+        if (quantity > 1) {
+            const newQuantity = quantity - 1;
+            setQuantity(newQuantity); 
+        } else {
+            message.info("At least 1 item must be selected");
         }
     };
 
@@ -68,10 +66,11 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
             <button
                 onClick={handleDecrease}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow hover:bg-gray-300 transition"
+                disabled={quantity <= 1} 
             >
                 −
             </button>
-            <span className="text-lg font-semibold">{quantity}</span> {/* Display current quantity */}
+            <span className="text-lg font-semibold">{quantity}</span>
             <button
                 onClick={handleIncrease}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow hover:bg-gray-300 transition"

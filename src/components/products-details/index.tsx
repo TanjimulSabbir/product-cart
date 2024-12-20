@@ -26,7 +26,7 @@ export default function ProductDetails() {
 
   return (
     <main className="container max-w-screen-2xl mx-auto horizantalPadding pb-10">
-      <div className="flex flex-col md:flex-row gap-8 p-8 xl:items-center xl:justify-center">
+      <div className="flex flex-col md:flex-row gap-8 md:p-8 xl:items-center xl:justify-center">
         {/* Product Images */}
         <div className="w-full md:w-1/2 flex justify-center xl:items-center">
           <ProductImages selectedColor={selectedColor} />
@@ -117,7 +117,6 @@ export default function ProductDetails() {
         </button>
       </div>
 
-      {/* Global Modal */}
       <GlobalModal
         body={<Cart />}
         handleModal={handleModal}

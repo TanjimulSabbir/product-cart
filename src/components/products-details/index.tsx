@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ProductImages from "./ProductImages";
-import { products, Product, Size, Color } from "../../utils/prodcuts.tsx";
+import { products, Product, Size, } from "../../utils/prodcuts.tsx";
 
 export default function ProductDetails() {
   const product: Product = products[0]; // Get the first product
@@ -9,9 +9,9 @@ export default function ProductDetails() {
 
   return (
     <main className="container max-w-screen-2xl mx-auto horizantalPadding">
-      <div className="flex gap-8 p-8 items-center justify-center">
-        <div className="w-full md:w-1/2 flex justify-center items-center">
-          <ProductImages selectedColor={selectedColor} /> {/* Pass selectedColor to ProductImages */}
+      <div className="flex flex-col md:flex-row gap-8 p-8 xl:items-center xl:justify-center">
+        <div className="w-full md:w-1/2 flex justify-center xl:items-center">
+          <ProductImages selectedColor={selectedColor} />
         </div>
 
         <div className="w-full md:w-1/2 space-y-6">
@@ -56,11 +56,11 @@ export default function ProductDetails() {
 
             <div className="space-y-2">
               <p className="font-medium">Wrist Size:</p>
-              <div className="flex items-center space-x-2">
+              <div className="flex flex-wrap items-center gap-3">
                 {product.sizes.map((size) => (
                   <button
                     key={size.label}
-                    className={`px-4 py-2 border rounded-lg text-sm font-medium ${
+                    className={`px-4 py-2 border rounded-lg text-xs lg:text-sm font-medium ${
                       selectedSize.label === size.label
                         ? "bg-blue-500 text-white border-blue-500"
                         : "bg-white text-gray-700 border-gray-300"

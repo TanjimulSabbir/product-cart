@@ -21,7 +21,7 @@ export default function ProductImages({ selectedColor }: ProductImagesProps) {
                     onChange: (index) => setCurrent(index),
                 }}
             >
-                <Image src={imageList} width={200} />
+                <Image src={imageList} />
             </Image.PreviewGroup>
         </main>
     );

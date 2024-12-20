@@ -2,11 +2,19 @@ import { useState } from "react";
 import ProductImages from "./ProductImages";
 import { products, Product, Size, } from "../../utils/prodcuts.tsx";
 import AddToCartButton from "../AddToCartBtn/index.tsx";
+import GlobalModal from "../../utils/GlobalModal.tsx";
 
 export default function ProductDetails() {
     const product: Product = products[0]
     const [selectedSize, setSelectedSize] = useState<Size>(product.sizes[0]);
     const [selectedColor, setSelectedColor] = useState<string>(product.colors[0]);
+
+    const [modalOpen, setModalOpen] = useState<boolean>(false)
+
+    const handleModal = () => {
+        setModalOpen(!modalOpen)
+    }
+
 
     return (
         <main className="container max-w-screen-2xl mx-auto horizantalPadding pb-10">
@@ -83,7 +91,7 @@ export default function ProductDetails() {
                     Complete Checkout
                 </button>
             </div>
-
+            <GlobalModal body={<p>Modal open</p>} handleModal={handleModal} modalOpen={modalOpen} />
         </main>
     );
 }

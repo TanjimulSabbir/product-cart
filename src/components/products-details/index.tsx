@@ -1,15 +1,24 @@
-import { useEffect, useState } from "react";
-import ProductImages from "./ProductImages";
-import { products, Product, Size } from "../../utils/prodcuts.tsx";
-import AddToCartButton from "../AddToCartBtn/index.tsx";
+import { useState } from "react";
 import GlobalModal from "../../utils/GlobalModal.tsx";
+import { Product, products, Size } from "../../utils/prodcuts.tsx";
+import AddToCartButton from "../AddToCartBtn/index.tsx";
 import Cart from "../Cart/index.tsx";
+import ProductImages from "./ProductImages";
+import { useAppSelector } from "../../hooks/hooks.ts";
 
 export default function ProductDetails() {
   const product: Product = products[0]; // Selected product
   const [selectedSize, setSelectedSize] = useState<Size>(product.sizes[0]);
   const [selectedColor, setSelectedColor] = useState<string>(product.colors[0]);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const cartItems = useAppSelector(state => state.cart.items);
+
+  const cartItem = cartItems.find(
+    item =>
+      item.id === product.id &&
+      item.size === selectedSize.label &&
+      item.color === selectedColor
+  );
 
   const handleModal = (isOpen: boolean) => {
     setModalOpen(isOpen);
@@ -77,7 +86,7 @@ export default function ProductDetails() {
                   <button
                     key={size.label}
                     className={`px-4 py-2 border rounded-lg text-xs lg:text-sm font-medium ${selectedSize.label === size.label
-                      ? "bg-blue-500 text-white border-blue-500"
+                      ? `${cartItem ? "bg-green-500" : "bg-blue-500 border-blue-500"} text-white `
                       : "bg-white text-gray-700 border-gray-300"
                       }`}
                     onClick={() => setSelectedSize(size)}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductImages from "./ProductImages";
 import { products, Product, Size } from "../../utils/prodcuts.tsx";
 import AddToCartButton from "../AddToCartBtn/index.tsx";
@@ -59,8 +59,8 @@ export default function ProductDetails() {
                   <button
                     key={color}
                     className={`w-8 h-8 rounded-full border-2 ${selectedColor === color
-                        ? "border-blue-500"
-                        : "border-gray-300"
+                      ? "border-blue-500"
+                      : "border-gray-300"
                       }`}
                     style={{ backgroundColor: color }}
                     onClick={() => setSelectedColor(color)}
@@ -77,8 +77,8 @@ export default function ProductDetails() {
                   <button
                     key={size.label}
                     className={`px-4 py-2 border rounded-lg text-xs lg:text-sm font-medium ${selectedSize.label === size.label
-                        ? "bg-blue-500 text-white border-blue-500"
-                        : "bg-white text-gray-700 border-gray-300"
+                      ? "bg-blue-500 text-white border-blue-500"
+                      : "bg-white text-gray-700 border-gray-300"
                       }`}
                     onClick={() => setSelectedSize(size)}
                   >
@@ -110,7 +110,7 @@ export default function ProductDetails() {
 
       {/* Global Modal */}
       <GlobalModal
-        body={<Cart/>}
+        body={<Cart />}
         handleModal={handleModal}
         modalOpen={modalOpen}
       />

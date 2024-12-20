@@ -42,10 +42,22 @@ const cartSlice = createSlice({
                 item.color !== action.payload.color ||
                 item.size !== action.payload.size
             );
-        }
+        },
+        increaseQuantity: (state, action: PayloadAction<{ id: number; color: string; size: string }>) => {
+            const { id, color, size } = action.payload;
+            const item = state.items.find((item) => item.id === id && item.color === color && item.size === size);
+            if (item) item.quantity += 1;
+        },
+
+        decreaseQuantity: (state, action: PayloadAction<{ id: number; color: string; size: string }>) => {
+            const { id, color, size } = action.payload;
+            const item = state.items.find((item) => item.id === id && item.color === color && item.size === size);
+            if (item) item.quantity = Math.max(item.quantity - 1, 1);
+        },
+
 
     },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart,increaseQuantity,decreaseQuantity } = cartSlice.actions;
 export default cartSlice.reducer;

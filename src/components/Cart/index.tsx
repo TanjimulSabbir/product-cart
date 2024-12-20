@@ -1,6 +1,6 @@
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
 import { products } from "../../utils/prodcuts";
-import { removeFromCart } from "../../redux/features/Cart/cartSlice"; // Adjust the import based on your Redux setup
+import { decreaseQuantity, increaseQuantity, removeFromCart } from "../../redux/features/Cart/cartSlice";
 
 const Cart = () => {
     // Get cart items from Redux state
@@ -25,7 +25,7 @@ const Cart = () => {
                             <th className="text-xs md:text-base py-2">Item</th>
                             <th className="text-xs md:text-base py-2 px-3">Color</th>
                             <th className="text-xs md:text-base py-2 px-3">Size</th>
-                            <th className="text-xs md:text-base py-2 px-3">Qty</th>
+                            <th className="text-xs md:text-base py-2 px-3 text-center">Qty</th>
                             <th className="text-xs md:text-base py-2 px-3">Price</th>
                             <th className="text-xs md:text-base py-2 px-3">Action</th>
                         </tr>
@@ -60,8 +60,23 @@ const Cart = () => {
 
                                         {/* Product Quantity */}
                                         <td className="py-2 px-3 text-[10px] sm:text-base">
-                                            {item.quantity}
+                                            <div className="flex items-center justify-between">
+                                                <button
+                                                    onClick={() => dispatch(increaseQuantity({ id: item.id, color: item.color, size: item.size }))}
+                                                    className="text-xs sm:text-base px-2 py-1 bg-gray-200 rounded-md hover:bg-gray-300"
+                                                >
+                                                    +
+                                                </button>
+                                                <span className="mx-2">{item.quantity}</span>
+                                                <button
+                                                    onClick={() => dispatch(decreaseQuantity({ id: item.id, color: item.color, size: item.size }))}
+                                                    className="text-xs sm:text-base px-2 py-1 bg-gray-200 rounded-md hover:bg-gray-300"
+                                                >
+                                                    −
+                                                </button>
+                                            </div>
                                         </td>
+
 
                                         {/* Product Price */}
                                         <td className="py-2 px-3 text-[10px] sm:text-base">

@@ -3,7 +3,6 @@ import blueWatch from "../assets/product-details/blue-product.png";
 import cyanWatch from "../assets/product-details/cyan-product.png";
 import blackWatch from "../assets/product-details/black-product.png";
 
-// Define types for product data
 export interface Size {
   label: string;
   price: number;
@@ -19,10 +18,10 @@ export interface Product {
   discountPrice: number;
   colors: string[];
   sizes: Size[];
-  images: Record<string, string>; // A map of color names to image URLs
+  images: Record<string, string>;
 }
 
-export type Color = "pink" | "black" | "blue" | "cyan"; // Define possible colors for the product
+export type Color = "pink" | "black" | "blue" | "cyan";
 
 export const products: Product[] = [
   {

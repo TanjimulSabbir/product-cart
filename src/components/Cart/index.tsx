@@ -6,10 +6,8 @@ const Cart = () => {
     // Get cart items from Redux state
     const cartItems = useAppSelector((state) => state.cart.items);
 
-    // Initialize the dispatch function
     const dispatch = useAppDispatch();
 
-    // Calculate total dynamically
     const total = cartItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0
@@ -42,7 +40,7 @@ const Cart = () => {
                                     {/* Combined Product Image and Name */}
                                     <td className="flex space-x-3 items-center py-2">
                                         <img
-                                            src={product.images[item.color]} // Fetch image based on the selected color
+                                            src={product.images[item.color]}
                                             alt={`${product.name} in ${item.color}`}
                                             className="w-12 h-12 object-cover rounded"
                                         />
@@ -70,7 +68,7 @@ const Cart = () => {
                                     {/* Remove Button */}
                                     <td className="py-2">
                                         <button
-                                            onClick={() => dispatch(removeFromCart(item.id))}
+                                            onClick={() => dispatch(removeFromCart(item))}
                                             className="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
                                         >
                                             Remove

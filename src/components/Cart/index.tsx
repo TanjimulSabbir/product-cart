@@ -16,11 +16,11 @@ const Cart = () => {
     );
 
     return (
-        <div className="max-w-lg mx-auto">
+        <div className="w-[700px]">
             <h2 className="text-lg font-semibold mb-4">Your Cart</h2>
 
             {/* Cart Table */}
-            <table className="w-full text-left border-collapse">
+            <table className="w-full text-left border-collapse border-spacing-6">
                 <thead>
                     <tr>
                         <th className="border-b pb-2">Item</th>
@@ -50,7 +50,11 @@ const Cart = () => {
                                     </td>
 
                                     {/* Product Color */}
-                                    <td className={`py-2 capitalize text-${item.color}`}>{item.color}</td>
+                                    <td
+                                        className="py-2 capitalize"
+                                    >
+                                        {item.color}
+                                    </td>
 
                                     {/* Product Size */}
                                     <td className="py-2">{item.size}</td>

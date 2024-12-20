@@ -11,16 +11,18 @@ interface GlobalModalProps {
 const GlobalModal: React.FC<GlobalModalProps> = ({ body, handleModal, modalOpen }) => {
 
     return (
-        <>
+        <main className='w-full'>
             {modalOpen && <Modal
                 centered
                 open={modalOpen}
                 onCancel={() => handleModal(false)}
                 footer={false}
+                style={{width:"100%"}}
+                width={"auto"}
             >
                 {body}
             </Modal>}
-        </>
+        </main>
     );
 };
 
